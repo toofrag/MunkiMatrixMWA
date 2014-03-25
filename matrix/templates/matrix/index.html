@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+  {% with entry_list=entries list_title='Managed Applictions' %}
+    {% include 'matrix/matrix.html' %}
+  {% endwith %}
+{% endblock %}

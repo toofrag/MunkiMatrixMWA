@@ -1,0 +1,36 @@
+{% load url from future %}
+{% load matrix_extras %}
+{% if list_title %}
+  <h3>{{ list_title }} <span class='badge badge-info'>{{ entry_list|length }}</span></h3>
+{% endif %}
+{% if entry_list|length %}
+  <p/>
+  <table cellpadding="0" cellspacing="0" border="0" class='table table-bordered table-condensed'>
+	<thead>
+	<tr>
+		<th>Installer Name</th>
+		{% for branch in branches %}
+			<th>{{branch.name}}</th>
+		{% endfor %}
+	</tr>
+	</thead>
+    <tbody>
+  {% for entry in entries %}
+	<tr>
+		<td><h5>{% if entry.app_object.url %}<a href="{{entry.app_object.url }}" target="_blank">{{ entry.app_object.display_name }}</a>{% else %}{{ entry.app_object.display_name }}{%endif %} <small>[{{ entry.app_object.name }}]</small></h5><p><small>{{ entry.app_object.description }}</small></p></td>
+
+		{% for branch in branches %}
+			<td>
+				{% for release in entry|get_item:branch.name %}
+					{% if release %}
+						<p><a href="{{ URLprefix }}/{{ release.location }}">{{ release.app_version }}</a>
+						<br><small>{{ release.min_os }} - {{ release.max_os }}</small></p>
+					{% endif %}
+				{% endfor %}
+			</td>
+		{% endfor %}
+	</tr>
+  {% endfor %}
+    </tbody>
+   </table>
+{% endif %}
