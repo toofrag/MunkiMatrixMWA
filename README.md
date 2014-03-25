@@ -3,6 +3,8 @@ MunkiMatrixMWA
 
 Displays the Munki repository in a table inside MWA
 
+![Matrix Screenshot](./matrix_screenshot.png?raw=true)
+
 
 Installing matrix into MWA
 ==========================
