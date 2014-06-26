@@ -142,7 +142,19 @@ def index(request):
 			
 					
 		# Create an object for this release
-		release_object = MunkiApplicationRelease(application_object,item['version'],item['minimum_os_version'],item['maximum_os_version'],item['installer_item_location'])
+		
+		if "minimum_os_version" in item.keys():
+			min_os_version=item["minimum_os_version"]
+		else:
+			min_os_version=""
+
+		if "maximum_os_version" in item.keys():
+			max_os_version=item["maximum_os_version"]
+		else:
+			max_os_version=""
+
+		
+		release_object = MunkiApplicationRelease(application_object,item['version'],min_os_version,max_os_version,item['installer_item_location'])
 		list_of_releases.append(release_object)
 	
 		# Iterate through each catalog on this item
